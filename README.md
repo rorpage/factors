@@ -1,8 +1,8 @@
 # factors
-simple API for getting factors of a number
+A very simple API for getting factors of a number.
 
-1. Run `bundle install` to install Sinatra and json
-1. The Procfile can be used to deploy to Heroku
+1. Run `bundle install` to install the required gems.
+1. The Procfile can be used to deploy to Heroku.
 
 Going to /api will give a JSON response with the current year's factors. You can append a `?q=` to the end to get factors of whatever number you like.
 
