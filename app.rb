@@ -2,14 +2,19 @@ require 'haml'
 require 'json'
 require 'sinatra'
 
-get '/' do
-  haml :index, :locals => { factors: Time.now.year.factors, year: Time.now.year }
+get '/api/?:q?' do
+  content_type :json
+  get_data(params['q']).to_json
 end
 
-get '/api?:q?' do
-  factors = params['q'] ? params['q'].to_i.factors : Time.now.year.factors
-  content_type :json
-  { factors: factors }.to_json
+get '/?:q?' do
+  haml :index, :locals => get_data(params['q'])
+end
+
+def get_data(query)
+  number = query ? query.to_i : Time.now.year
+  factors = number.factors
+  { number: number, factors: factors }
 end
 
 class Integer
